@@ -9,6 +9,7 @@ public class BulletCollision : MonoBehaviour
 {
     public GameObject losingText;
     public static bool gameOver = false;
+    public GameObject explosionPrefab;
     public static bool isGameOver()
     {
         return gameOver;
@@ -39,8 +40,13 @@ public class BulletCollision : MonoBehaviour
         }
 
         // Destroy the bullet after it hits anything
-        if (other.name != "PlayerObject")
+        if (other.name != "PlayerObject" && other.tag != "GunPowerup")
         {
+            if (gameObject.name == "RocketBullet(Clone)")
+            {
+                GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(explosion, 1.5f);
+            }
             Destroy(gameObject);
         }
     }
