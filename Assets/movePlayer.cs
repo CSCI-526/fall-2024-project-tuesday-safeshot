@@ -34,10 +34,29 @@ public class movePlayer : MonoBehaviour
 
     private float offsetDistance = 0f;
 
+    private PauseMenuController pauseMenuController;
+    void Awake()
+    {
+        InitializePauseMenuController();
+    }
+
+    void InitializePauseMenuController()
+    {
+        pauseMenuController = FindObjectOfType<PauseMenuController>();
+        if (pauseMenuController == null)
+        {
+            Debug.LogError("PauseMenuController not found in the scene!");
+        }
+    }
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
+        // set bullet collision gameOver to false
+        BulletCollision.setGameOver(false);
+
         rb = GetComponent<Rigidbody2D>();
         bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
     }
@@ -51,12 +70,10 @@ public class movePlayer : MonoBehaviour
         }
         if (BulletCollision.isGameOver())
         {
-            Debug.Log("Game Over for bullet collision");
             gameOver = true;
         }
         if (ExitDoor.isGameOver())
         {
-            Debug.Log("Game Over for exit door");
             gameOver = true;
         }
 
@@ -69,6 +86,12 @@ public class movePlayer : MonoBehaviour
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
+        }
+        
+        // If paused, do not allow shooting
+        if (pauseMenuController != null && pauseMenuController.IsPaused())
+        {
+            return;
         }
         if (Input.GetMouseButtonDown(0))
         {
