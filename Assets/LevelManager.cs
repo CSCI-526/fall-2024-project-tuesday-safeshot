@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("LevelManager Start method called.");
         levelButtons = GameObject.FindObjectsOfType<Button>();
-        ResetAllLevelStatus();
+        // ResetAllLevelStatus();
         InitializeLevelStatus();
         UpdateButtonStates();
     }
