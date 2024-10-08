@@ -128,11 +128,10 @@ public class movePlayer : MonoBehaviour
 
                 Vector2 accelerationForce = new Vector2(-dirX, -dirY) * force;
                 ShootBullet(inHandGun, accelerationForce);
-                bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
             }
 
         }
-
+        bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
         // Switching guns
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
