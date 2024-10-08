@@ -8,11 +8,22 @@ using UnityEngine.UI;
 public class BulletCollision : MonoBehaviour
 {
     public GameObject losingText;
-    public static bool gameOver = false;
+    private static bool gameOver = false;
+    // public static bool gameOver = false;
     public GameObject explosionPrefab;
+    private void Start()
+    {
+        gameOver = false;
+    }
+
     public static bool isGameOver()
     {
         return gameOver;
+    }
+
+    public static void setGameOver(bool status)
+    {
+        gameOver = status;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
