@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class movePlayer : MonoBehaviour
 {
     public Camera camera;
-    public GameObject bulletPrefab;
+    public GameObject defaultBulletPrefab;
+    public GameObject rocketBulletPrefab;
+    public GameObject flameBulletPrefab;
     public float bulletSpeed = 10f;
     private int bulletCount = 0;
 
@@ -18,10 +20,20 @@ public class movePlayer : MonoBehaviour
 
     public Transform obj;
 
-    public Transform gun;
+    private Transform gun;
+
+    public GameObject handgun;
+    public GameObject rocketGun;
+    public GameObject fireGun;
 
     public GameObject losingText;
-    public float force = 5f;
+
+    private float force = 5f;
+    public float handgunForce = 5f;
+    public float rocketForce = 10f;
+    public float fireForce = 2f;
+
+
 
     Vector2 playerPos;
     Vector2 mousePos;
@@ -34,17 +46,28 @@ public class movePlayer : MonoBehaviour
 
     private float offsetDistance = 0f;
 
+    private int inHandGun = 0;
+    private int rocketBullets = 0;
+    private int flameBullets = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+
+        handgun.SetActive(true);
+        rocketGun.SetActive(false);
+        fireGun.SetActive(false);
+
+        gun = handgun.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Game Over mechanics
         if (gameOver)
         {
             return;
@@ -60,16 +83,14 @@ public class movePlayer : MonoBehaviour
             gameOver = true;
         }
 
-        // Debug.Log("Bullet count: " + bulletCount);
-        // Debug.Log("Velocity: " + rb.velocity.magnitude);
-        // as the velocity may be a very small number when standing on a dynamic rigidbody, set a low threshold to detect if the player is standing still
-        // may need to fix this in the future
-        if (bulletCount >= bulletLimit && rb.velocity.magnitude < 0.00001f)
+        if (bulletCount >= bulletLimit && rb.velocity.magnitude < 0.00001f && rocketBullets <= 0 && flameBullets <= 0)
         {
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
         }
+
+        // Shooting Mechanics
         if (Input.GetMouseButtonDown(0))
         {
             if (bulletCount < bulletLimit)
@@ -83,21 +104,44 @@ public class movePlayer : MonoBehaviour
                 float dirY = mousePosY / (Mathf.Abs(mousePosX) + Mathf.Abs(mousePosY));
 
                 Vector2 accelerationForce = new Vector2(-dirX, -dirY) * force;
-                rb.AddForce(accelerationForce, ForceMode2D.Impulse);
-
-
-                ShootBullet();
+                ShootBullet(inHandGun, accelerationForce);
                 bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
             }
 
         }
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, direction);
-        gun.transform.eulerAngles = new Vector3(0, 0, angle);
+
+        // Switching guns
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inHandGun = 0;
+            force = handgunForce;
+            handgun.SetActive(true);
+            rocketGun.SetActive(false);
+            fireGun.SetActive(false);
+            gun = handgun.transform;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inHandGun = 1;
+            force = rocketForce;
+            handgun.SetActive(false);
+            rocketGun.SetActive(true);
+            fireGun.SetActive(false);
+            gun = rocketGun.transform;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inHandGun = 2;
+            force = fireForce;
+            handgun.SetActive(false);
+            rocketGun.SetActive(false);
+            fireGun.SetActive(true);
+            gun = fireGun.transform;
+        }
     }
 
-    void ShootBullet()
+    void ShootBullet(int bullettype = 0, Vector2 accelerationForce = new Vector2())
     {
         // Get the mouse position in world space
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -106,34 +150,83 @@ public class movePlayer : MonoBehaviour
         // Get the player's position (where the bullet will spawn)
         Vector3 playerPosition = transform.position;
 
-        // Calculate the directionion
+        // Calculate the direction
         Vector2 direction = (mousePosition - playerPosition).normalized;
         Vector3 direction3 = new Vector3(direction.x, direction.y, 0);
 
         Vector3 bulletSpawnPosition = playerPosition + direction3 * offsetDistance;
+        bool canShoot = true;
 
-
-        // Instantiate the bullet at the player's position
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPosition, Quaternion.identity);
-
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (bullettype == 0)
         {
-            rb.velocity = direction * bulletSpeed;
+            bulletCount++;
+            shootBulletofType(canShoot, defaultBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
+        }
+        else if (bullettype == 1)
+        {
+            if (rocketBullets <= 0)
+            {
+                canShoot = false;
+            }
+            else
+            {
+                rocketBullets--;
+            }
+            shootBulletofType(canShoot, rocketBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
+        }
+        else if (bullettype == 2)
+        {
+            if (flameBullets <= 0)
+            {
+                canShoot = false;
+            }
+            else
+            {
+                flameBullets--;
+            }
+            shootBulletofType(canShoot, flameBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
+        }
+    }
+
+    void shootBulletofType(bool canShoot, GameObject prefab, Vector3 bulletSpawnPosition, Vector2 direction, Vector2 accelerationForce)
+    {
+        if (!canShoot)
+        {
+            Debug.Log("Cannot shoot");
+            return;
         }
 
-        // Pass the direction to the player's controller
-        // if (playerController != null)
-        // {
-        //     playerController.ReceiveDirection(direction);
-        // }
+        GameObject bullet = Instantiate(prefab, bulletSpawnPosition, Quaternion.identity);
 
-        // Increment the bullet count; maybe we should do this by calling a function in the game manager
-        bulletCount++;
+        Rigidbody2D rb_bullet = bullet.GetComponent<Rigidbody2D>();
+        if (rb_bullet != null)
+        {
+            rb_bullet.velocity = direction * bulletSpeed;
+            rb.AddForce(accelerationForce, ForceMode2D.Impulse);
+        }
+
         Debug.Log("Bullet count: " + bulletCount);
 
-        // Destroy the bullet after 2 seconds
         Destroy(bullet, 2f);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "GunPowerup")
+        {
+            Debug.Log("Gun powerup, " + other.gameObject.name + " collected");
+
+            if (other.name == "RocketPowerup")
+            {
+                rocketBullets++;
+                Debug.Log("Rocket bullets: " + rocketBullets);
+            }
+            else if (other.name == "FlamethrowerPowerup")
+            {
+                flameBullets++;
+                Debug.Log("Flame bullets: " + flameBullets);
+            }
+            other.gameObject.SetActive(false);
+        }
+    }
 }

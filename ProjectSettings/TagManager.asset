@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - BreakableWall
+  - GunPowerup
   layers:
   - Default
   - TransparentFX

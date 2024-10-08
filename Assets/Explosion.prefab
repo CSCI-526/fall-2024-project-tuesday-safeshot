@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2889298443279310954}
   - component: {fileID: 6928812116896654435}
-  - component: {fileID: 123626870237304407}
   - component: {fileID: 7320561940088411041}
   - component: {fileID: 5987020931666611530}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.22, y: -1.39, z: 0}
-  m_LocalScale: {x: 0.10483274, y: 0.10483274, z: 0.10483274}
+  m_LocalScale: {x: 2, y: 2, z: 0.10483274}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,20 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &123626870237304407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6480403673047062040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b5753b84fc74a843a5c891d88e91a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  losingText: {fileID: 4335019609785693678, guid: d44ac3a66c30f40f490ace23691d94d5, type: 3}
-  explosionPrefab: {fileID: 6480403673047062040, guid: f19d1ee2e277d4f7287f73b2b5b691af, type: 3}
 --- !u!50 &7320561940088411041
 Rigidbody2D:
   serializedVersion: 4
