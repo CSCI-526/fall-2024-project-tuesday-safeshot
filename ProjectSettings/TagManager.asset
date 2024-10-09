@@ -7,6 +7,8 @@ TagManager:
   - NPC
   - BreakableWall
   - GunPowerup
+  - lava
+  - icewall
   layers:
   - Default
   - TransparentFX

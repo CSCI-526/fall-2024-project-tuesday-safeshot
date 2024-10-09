@@ -45,6 +45,16 @@ public class BulletCollision : MonoBehaviour
             Debug.Log("Bullet collided with Breakable Wall");
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("icewall"))
+        {
+            Debug.Log("Bullet collided with ice wall");
+            icewall wall = other.GetComponent<icewall>();
+            if (wall != null)
+            {
+                wall.RegisterHit(); 
+            }
+            Destroy(gameObject);
+        }
         else
         {
             Debug.Log("Bullet collided with " + other.name);
