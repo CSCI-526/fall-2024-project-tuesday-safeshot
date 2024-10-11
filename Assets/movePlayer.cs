@@ -105,6 +105,8 @@ public class movePlayer : MonoBehaviour
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
+            PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+            pauseMenuController.ShowGamePauseMenuDelay();
         }
 
         // If paused, do not allow shooting

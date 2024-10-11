@@ -15,6 +15,8 @@ public class PlayerCollision : MonoBehaviour
             {
                 gameOver = true;
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
+                PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+                pauseMenuController.ShowGamePauseMenuDelay();
             }
         }
     }

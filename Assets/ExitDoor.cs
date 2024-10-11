@@ -6,7 +6,6 @@ public class ExitDoor : MonoBehaviour
 {
     public GameObject winningText;
     public Canvas resultTextCanvas; 
-
     private static bool gameOver = false;
     public static bool isGameOver()
     {
@@ -27,6 +26,9 @@ public class ExitDoor : MonoBehaviour
             {
                 gameOver = true;                
                 Instantiate(winningText, new Vector3(0, 0, 0), Quaternion.identity);
+                PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+                pauseMenuController.ShowGamePauseMenuDelay();
+
                 // set the status of this level to completed
                 LevelController levelController = FindObjectOfType<LevelController>();
                 if (levelController != null)

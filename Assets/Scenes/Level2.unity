@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.83877754, b: 0.504717, a: 1}
+  m_Color: {r: 1, g: 0.83877754, b: 0.504717, a: 0.8627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5695,14 +5695,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1440892410}
-  bulletPrefab: {fileID: 6480403673047062040, guid: 8a8afc12a199b1d4db3c7db63225fd18, type: 3}
+  defaultBulletPrefab: {fileID: 0}
+  rocketBulletPrefab: {fileID: 0}
+  flameBulletPrefab: {fileID: 0}
   bulletSpeed: 10
   bulletCountText: {fileID: 1143219724}
   bulletLimit: 35
   obj: {fileID: 2114338696}
-  gun: {fileID: 2138096013}
+  handgun: {fileID: 0}
+  rocketGun: {fileID: 0}
+  fireGun: {fileID: 0}
   losingText: {fileID: 4335019609785693678, guid: d44ac3a66c30f40f490ace23691d94d5, type: 3}
-  force: 5
+  handgunForce: 5
+  rocketForce: 10
+  fireForce: 2
 --- !u!50 &2114338694
 Rigidbody2D:
   serializedVersion: 4

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -47,6 +48,26 @@ public class PauseMenuController : MonoBehaviour
         if (pauseButton != null)
         {
             pauseButton.gameObject.SetActive(!isPaused);
+        }
+    }
+    public void ShowGamePauseMenu()
+    {
+        if (!isPaused)
+        {
+            TogglePauseMenu();
+        }
+    }
+
+    public void ShowGamePauseMenuDelay()
+    {
+        StartCoroutine(ShowGamePauseMenuCoroutine());
+    }
+    private IEnumerator ShowGamePauseMenuCoroutine(){
+        yield return new WaitForSeconds(1f);
+
+        if (!isPaused)
+        {
+            TogglePauseMenu();
         }
     }
 
