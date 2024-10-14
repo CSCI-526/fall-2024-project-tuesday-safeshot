@@ -14,9 +14,9 @@ public class icewall : MonoBehaviour
         }
     }
 
-    public void RegisterHit()
+    public void RegisterHit(int hitNum = 1)
         {
-            hitCount++; 
+            hitCount += hitNum; 
             Debug.Log("Ice Wall hit count: " + hitCount);
             if (hitCount >= requiredHits)
             {
