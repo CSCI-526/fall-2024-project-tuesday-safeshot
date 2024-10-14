@@ -118,7 +118,7 @@ public class movePlayer : MonoBehaviour
         // Shooting Mechanics
         if (Input.GetMouseButtonDown(0))
         {
-            if (bulletCount < bulletLimit)
+            if (bulletCount < bulletLimit || flameBullets > 0 || rocketBullets > 0)
             {
                 playerPos = obj.transform.position;//gets player position
                 mousePos = Input.mousePosition;//gets mouse postion
@@ -183,7 +183,13 @@ public class movePlayer : MonoBehaviour
 
         if (bullettype == 0)
         {
-            bulletCount++;
+            if (bulletCount >= bulletLimit)
+            {
+                canShoot = false;
+            } else if(bulletCount < bulletLimit)
+            {
+                bulletCount++;
+            }
             shootBulletofType(canShoot, defaultBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
         }
         else if (bullettype == 1)

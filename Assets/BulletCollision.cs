@@ -53,7 +53,13 @@ public class BulletCollision : MonoBehaviour
             icewall wall = other.GetComponent<icewall>();
             if (wall != null)
             {
-                wall.RegisterHit(); 
+                if(gameObject.name == "FireBullet(Clone)")
+                {
+                    wall.RegisterHit(wall.requiredHits);
+                } else
+                {
+                    wall.RegisterHit();
+                }
             }
             Destroy(gameObject);
         }
