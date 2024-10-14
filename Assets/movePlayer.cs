@@ -99,6 +99,10 @@ public class movePlayer : MonoBehaviour
         {
             gameOver = true;
         }
+        if (ExplosionDamage.isGameOver())
+        {
+            gameOver = true;
+        }
 
         if (bulletCount >= bulletLimit && rb.velocity.magnitude < 0.00001f && rocketBullets <= 0 && flameBullets <= 0)
         {
@@ -186,7 +190,8 @@ public class movePlayer : MonoBehaviour
             if (bulletCount >= bulletLimit)
             {
                 canShoot = false;
-            } else if(bulletCount < bulletLimit)
+            }
+            else if (bulletCount < bulletLimit)
             {
                 bulletCount++;
             }
@@ -257,6 +262,11 @@ public class movePlayer : MonoBehaviour
                 Debug.Log("Flame bullets: " + flameBullets);
             }
             other.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.tag == "lava")
+        {
+            gameOver = true;
+            Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
         }
     }
 }
