@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestionBoxControl : MonoBehaviour
 {
@@ -8,10 +8,22 @@ public class QuestionBoxControl : MonoBehaviour
     public GameObject player;
     public int extraBullet;
     public GameObject[] hiddenNPCs;
-    
-    // Start is called before the first frame update
+    public RectTransform textRectTransform;
+    public PopUpTextManager popUpTextManager;
+    public float textYOffset = 0.0f; // Offset above the box
+    public float textXOffset = 0.0f;
+
+    void SetPopUpText(string message)
+    {
+        Vector3 worldPosition = transform.position;
+        Vector2 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        textRectTransform.position = screenPosition + new Vector2(textXOffset, textYOffset);
+        popUpTextManager.ShowText(message);
+    }
+
     void Start()
     {
+        textRectTransform.gameObject.SetActive(false);
         if (isTrap)
         {
             foreach (GameObject hiddenNPC in hiddenNPCs)
@@ -23,7 +35,6 @@ public class QuestionBoxControl : MonoBehaviour
 
     void showHiddenNPC()
     {
-        // show hidden NPC
         foreach (GameObject hiddenNPC in hiddenNPCs)
         {
             hiddenNPC.SetActive(true);
@@ -35,13 +46,20 @@ public class QuestionBoxControl : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit the question box");
-            if (!isTrap) {
+            
+            if (!isTrap)
+            {
                 player.GetComponent<movePlayer>().bulletLimit += extraBullet;
-            }else {
+                SetPopUpText("You have received " + extraBullet + " extra bullets!");
+            }
+            else
+            {
                 showHiddenNPC();
+                SetPopUpText("Oops! It's a trap!");
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false); // Hide the question box
         }
     }
+
 }
