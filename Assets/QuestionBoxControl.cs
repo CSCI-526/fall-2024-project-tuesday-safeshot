@@ -35,6 +35,7 @@ public class QuestionBoxControl : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit the question box");
+            player.GetComponent<movePlayer>().questionBoxTouched += 1;
             if (!isTrap) {
                 player.GetComponent<movePlayer>().bulletLimit += extraBullet;
             }else {

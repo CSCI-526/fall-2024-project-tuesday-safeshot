@@ -28,11 +28,14 @@ public class ExitDoor : MonoBehaviour
                 Instantiate(winningText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
-
-                // set the status of this level to completed
                 LevelController levelController = FindObjectOfType<LevelController>();
                 if (levelController != null)
                 {
+                    levelController.increWinTries();
+                    levelController.setIfSuccess();
+                    levelController.increNumOfTries();
+                    levelController.SendGoogleBulletUsageData();
+                    levelController.SendGoogleRewardData();
                     levelController.CompleteLevel();
                 }
                 else

@@ -38,6 +38,9 @@ public class BulletCollision : MonoBehaviour
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
+                LevelController levelController = FindObjectOfType<LevelController>();
+                levelController.increShootFriend();
+                levelController.increNumOfTries();
             }
             // change the color of the NPC to grey
             other.GetComponent<SpriteRenderer>().color = Color.grey;

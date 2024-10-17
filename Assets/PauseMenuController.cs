@@ -86,5 +86,6 @@ public class PauseMenuController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+        levelController.SendGoogleCompletionData();
     }
 }

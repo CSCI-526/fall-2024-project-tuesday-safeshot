@@ -50,6 +50,10 @@ public class movePlayer : MonoBehaviour
     private int rocketBullets = 0;
     private int flameBullets = 0;
 
+    public int specialGunCollected = 0;
+    public int specialGunUsed = 0;
+    public int questionBoxTouched = 0;
+
     private PauseMenuController pauseMenuController;
     void Awake()
     {
@@ -111,6 +115,9 @@ public class movePlayer : MonoBehaviour
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
             pauseMenuController.ShowGamePauseMenuDelay();
+            LevelController levelController = FindObjectOfType<LevelController>();
+            levelController.increNoBullet();
+            levelController.increNumOfTries();
         }
 
         // If paused, do not allow shooting
@@ -205,6 +212,7 @@ public class movePlayer : MonoBehaviour
             }
             else
             {
+                specialGunUsed++;
                 rocketBullets--;
             }
             shootBulletofType(canShoot, rocketBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
@@ -217,6 +225,7 @@ public class movePlayer : MonoBehaviour
             }
             else
             {
+                specialGunUsed++;
                 flameBullets--;
             }
             shootBulletofType(canShoot, flameBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
@@ -250,7 +259,7 @@ public class movePlayer : MonoBehaviour
         if (other.gameObject.tag == "GunPowerup")
         {
             Debug.Log("Gun powerup, " + other.gameObject.name + " collected");
-
+            specialGunCollected++;
             if (other.name == "RocketPowerup")
             {
                 rocketBullets++;
@@ -268,5 +277,9 @@ public class movePlayer : MonoBehaviour
             gameOver = true;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
         }
+    }
+
+    public int getBulletUsed(){
+        return bulletCount;
     }
 }
