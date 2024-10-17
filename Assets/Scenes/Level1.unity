@@ -418,6 +418,9 @@ MonoBehaviour:
   handgunForce: 5
   rocketForce: 10
   fireForce: 2
+  specialGunCollected: 0
+  specialGunUsed: 0
+  questionBoxTouched: 0
 --- !u!50 &57679134
 Rigidbody2D:
   serializedVersion: 4
@@ -4630,7 +4633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1315042921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5282,7 +5285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1369507379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6434,7 +6437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1656722487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8084,7 +8087,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ad1c38914fc426190a3c35c1759949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSe3m9SgrYku9Khrm9mkjqjs1VWdmWCIG3UtY6ykE3wnp3V4dQ/formResponse
 --- !u!1 &2060470512
 GameObject:
   m_ObjectHideFlags: 0

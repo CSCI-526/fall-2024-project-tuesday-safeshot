@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 57679135}
   - component: {fileID: 57679134}
   - component: {fileID: 57679133}
+  - component: {fileID: 57679137}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Player
@@ -418,6 +419,9 @@ MonoBehaviour:
   handgunForce: 5
   rocketForce: 10
   fireForce: 2
+  specialGunCollected: 0
+  specialGunUsed: 0
+  questionBoxTouched: 0
 --- !u!50 &57679134
 Rigidbody2D:
   serializedVersion: 4
@@ -509,6 +513,19 @@ Transform:
   - {fileID: 1042516409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57679137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57679132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07027430af5b04190af138206bbcbfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  losingText: {fileID: 4335019609785693678, guid: d44ac3a66c30f40f490ace23691d94d5, type: 3}
 --- !u!1 &75686379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,7 +4522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1315042921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6492,7 +6509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1719005271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7090,7 +7107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1864258519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8277,7 +8294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ad1c38914fc426190a3c35c1759949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSe3m9SgrYku9Khrm9mkjqjs1VWdmWCIG3UtY6ykE3wnp3V4dQ/formResponse
 --- !u!1 &2060470512
 GameObject:
   m_ObjectHideFlags: 0

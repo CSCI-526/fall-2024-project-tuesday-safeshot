@@ -5,7 +5,7 @@ using UnityEngine;
 public class icewall : MonoBehaviour
 {
     private int hitCount = 0; 
-    public int requiredHits = 3; 
+    public int requiredHits = 5; 
     private void onCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.name == "Bullet (Clone)")
@@ -21,7 +21,7 @@ public class icewall : MonoBehaviour
             if (hitCount >= requiredHits)
             {
                 Destroy(gameObject);
-                Debug.Log("Ice Wall destroyed after 3 hits.");
+                Debug.Log("Ice Wall destroyed after 5 hits.");
             }
         }
 }
