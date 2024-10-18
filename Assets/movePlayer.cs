@@ -112,6 +112,9 @@ public class movePlayer : MonoBehaviour
         {
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
+            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over\nNo bullets left!";
+            losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
             pauseMenuController.ShowGamePauseMenuDelay();
@@ -272,14 +275,25 @@ public class movePlayer : MonoBehaviour
             }
             other.gameObject.SetActive(false);
         }
-        else if (other.gameObject.tag == "lava")
+
+        if (other.gameObject.tag == "lava")
         {
-            gameOver = true;
-            Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
+            Debug.Log("Game Over");
+            if (!gameOver)
+            {
+                gameOver = true;
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over!\nYou died by Lava!";
+                losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
+                PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+                pauseMenuController.ShowGamePauseMenuDelay();
+            }
         }
     }
 
-    public int getBulletUsed(){
+    public int getBulletUsed()
+    {
         return bulletCount;
     }
 }
