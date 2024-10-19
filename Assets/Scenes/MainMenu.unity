@@ -694,8 +694,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Basic gameplay\n- Click mouse to shoot\n- Move by bullet recoil\n- Avoid
-    shooting your friends (green boxes)\n- Touch special item to get a surprise \nEnjoy
-    your journey ~"
+    shooting your friends (green boxes)\n- Touch special item to get a surprise\n-
+    Switch guns using number key 1,2,3 \nEnjoy your journey ~"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
