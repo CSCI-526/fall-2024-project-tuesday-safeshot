@@ -76,6 +76,7 @@ public class movePlayer : MonoBehaviour
         gameOver = false;
         // set bullet collision gameOver to false
         BulletCollision.setGameOver(false);
+        ExplosionDamage.setGameOver(false);
 
         rb = GetComponent<Rigidbody2D>();
         bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;

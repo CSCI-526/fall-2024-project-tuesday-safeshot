@@ -7,7 +7,8 @@ using TMPro;
 public class ExplosionDamage : MonoBehaviour
 {
     // Start is called before the first frame update
-    static bool gameFail = false;
+    private static bool gameFail = false;
+
     public GameObject losingText;
 
     void Start()
@@ -20,6 +21,11 @@ public class ExplosionDamage : MonoBehaviour
         return gameFail;
     }
 
+    public static void setGameOver(bool status)
+    {
+        gameFail = status;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Explosion collided with " + other.gameObject.tag);
@@ -30,6 +36,12 @@ public class ExplosionDamage : MonoBehaviour
             losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
             gameFail = true;
+            PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+            pauseMenuController.ShowGamePauseMenuDelay();
+            LevelController levelController = FindObjectOfType<LevelController>();
+            levelController.increShootFriend();
+            levelController.increNumOfTries();
+            other.GetComponent<SpriteRenderer>().color = Color.grey;
         }
     }
 }
