@@ -574,6 +574,9 @@ MonoBehaviour:
   handgunForce: 5
   rocketForce: 10
   fireForce: 2
+  specialGunCollected: 0
+  specialGunUsed: 0
+  questionBoxTouched: 0
 --- !u!50 &57679134
 Rigidbody2D:
   serializedVersion: 4
@@ -5555,7 +5558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1315042921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6043,7 +6046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1369507379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7225,7 +7228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fa745ffdedf4ce68c7a7e883b3e531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHits: 3
+  requiredHits: 5
 --- !u!61 &1656722487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8611,6 +8614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2059732527}
   - component: {fileID: 2059732526}
+  - component: {fileID: 2059732528}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -8645,6 +8649,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059732528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059732525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ad1c38914fc426190a3c35c1759949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2060470512
 GameObject:
   m_ObjectHideFlags: 0

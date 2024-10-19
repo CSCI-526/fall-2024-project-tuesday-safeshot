@@ -48,7 +48,13 @@ public class movePlayer : MonoBehaviour
 
     private int inHandGun = 0;
     private int rocketBullets = 0;
+    private int rocketBulletsLimit = 0;
     private int flameBullets = 0;
+    private int flameBulletsLimit = 0;
+
+    public int specialGunCollected = 0;
+    public int specialGunUsed = 0;
+    public int questionBoxTouched = 0;
 
     private PauseMenuController pauseMenuController;
     void Awake()
@@ -72,6 +78,7 @@ public class movePlayer : MonoBehaviour
         gameOver = false;
         // set bullet collision gameOver to false
         BulletCollision.setGameOver(false);
+        ExplosionDamage.setGameOver(false);
 
         rb = GetComponent<Rigidbody2D>();
         bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
@@ -108,9 +115,26 @@ public class movePlayer : MonoBehaviour
         {
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
+            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over\nNo bullets left!";
+            losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
             pauseMenuController.ShowGamePauseMenuDelay();
+            LevelController levelController = FindObjectOfType<LevelController>();
+            levelController.increNoBullet();
+            levelController.increNumOfTries();
+            // Trigger EndGame method from PauseMenuController
+            if (pauseMenuController != null)
+            {
+                pauseMenuController.EndGame();  // This will hide the Continue button and show the correct UI
+            }
+            else
+            {
+                Debug.LogError("PauseMenuController not found.");
+            }
+
+            return;  // Exit the update function to prevent further actions
         }
 
         // If paused, do not allow shooting
@@ -137,7 +161,20 @@ public class movePlayer : MonoBehaviour
             }
 
         }
-        bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+        switch (inHandGun) {
+            case 0:
+                bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+                break;
+            case 1:
+                bulletCountText.text = "Rocket Bullets: " + (rocketBullets) + "/" + rocketBulletsLimit;
+                break;
+            case 2:
+                bulletCountText.text = "Flame Bullets: " + (flameBullets) + "/" + flameBulletsLimit;
+                break;
+            default:
+                break;
+        }
+        
         // Switching guns
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -205,6 +242,7 @@ public class movePlayer : MonoBehaviour
             }
             else
             {
+                specialGunUsed++;
                 rocketBullets--;
             }
             shootBulletofType(canShoot, rocketBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
@@ -217,6 +255,7 @@ public class movePlayer : MonoBehaviour
             }
             else
             {
+                specialGunUsed++;
                 flameBullets--;
             }
             shootBulletofType(canShoot, flameBulletPrefab, bulletSpawnPosition, direction, accelerationForce);
@@ -250,23 +289,40 @@ public class movePlayer : MonoBehaviour
         if (other.gameObject.tag == "GunPowerup")
         {
             Debug.Log("Gun powerup, " + other.gameObject.name + " collected");
-
+            specialGunCollected++;
             if (other.name == "RocketPowerup")
             {
                 rocketBullets++;
+                rocketBulletsLimit++;
                 Debug.Log("Rocket bullets: " + rocketBullets);
             }
             else if (other.name == "FlamethrowerPowerup")
             {
                 flameBullets++;
+                flameBulletsLimit++;
                 Debug.Log("Flame bullets: " + flameBullets);
             }
             other.gameObject.SetActive(false);
         }
-        else if (other.gameObject.tag == "lava")
+
+        if (other.gameObject.tag == "lava")
         {
-            gameOver = true;
-            Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
+            Debug.Log("Game Over");
+            if (!gameOver)
+            {
+                gameOver = true;
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over!\nYou died by Lava!";
+                losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
+                PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+                pauseMenuController.ShowGamePauseMenuDelay();
+            }
         }
+    }
+
+    public int getBulletUsed()
+    {
+        return bulletCount;
     }
 }

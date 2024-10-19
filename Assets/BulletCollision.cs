@@ -35,9 +35,15 @@ public class BulletCollision : MonoBehaviour
             if (!gameOver)
             {
                 gameOver = true;
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over\nYou shot a friend :(";
+                losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
+                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
+                LevelController levelController = FindObjectOfType<LevelController>();
+                levelController.increShootFriend();
+                levelController.increNumOfTries();
             }
             // change the color of the NPC to grey
             other.GetComponent<SpriteRenderer>().color = Color.grey;
@@ -53,10 +59,11 @@ public class BulletCollision : MonoBehaviour
             icewall wall = other.GetComponent<icewall>();
             if (wall != null)
             {
-                if(gameObject.name == "FireBullet(Clone)")
+                if (gameObject.name == "FireBullet(Clone)")
                 {
                     wall.RegisterHit(wall.requiredHits);
-                } else
+                }
+                else
                 {
                     wall.RegisterHit();
                 }
