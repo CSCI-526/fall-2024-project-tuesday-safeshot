@@ -15,8 +15,16 @@ public class PlayerCollision : MonoBehaviour
             {
                 gameOver = true;
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
+                // Call the EndGame method to properly end the game
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay();
+                if (pauseMenuController != null)
+                {
+                    pauseMenuController.EndGame();  // This will trigger the game over UI flow
+                }
+                else
+                {
+                    Debug.LogError("PauseMenuController not found.");
+                }
             }
         }
     }
