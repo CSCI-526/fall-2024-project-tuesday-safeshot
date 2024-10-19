@@ -17,7 +17,7 @@ public class PopUpTextManager : MonoBehaviour
     {
         text.text = message;
         text.gameObject.SetActive(true);
-        StartCoroutine(HideTextAfterDelay(1f));
+        StartCoroutine(HideTextAfterDelay(2f));
     }
 
     IEnumerator HideTextAfterDelay(float delay)
