@@ -56,20 +56,7 @@ public class movePlayer : MonoBehaviour
     public int specialGunUsed = 0;
     public int questionBoxTouched = 0;
 
-    private PauseMenuController pauseMenuController;
-    void Awake()
-    {
-        InitializePauseMenuController();
-    }
-
-    void InitializePauseMenuController()
-    {
-        pauseMenuController = FindObjectOfType<PauseMenuController>();
-        if (pauseMenuController == null)
-        {
-            Debug.LogError("PauseMenuController not found in the scene!");
-        }
-    }
+    public PauseMenuController pauseMenuController;
 
 
     // Start is called before the first frame update
@@ -124,6 +111,7 @@ public class movePlayer : MonoBehaviour
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increNoBullet();
             levelController.increNumOfTries();
+            pauseMenuController.EndGame();
         }
 
         // If paused, do not allow shooting
@@ -309,6 +297,7 @@ public class movePlayer : MonoBehaviour
                 levelController.increNumOfTries();                
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.EndGame();
             }
         }
     }

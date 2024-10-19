@@ -577,6 +577,7 @@ MonoBehaviour:
   specialGunCollected: 0
   specialGunUsed: 0
   questionBoxTouched: 0
+  pauseMenuController: {fileID: 0}
 --- !u!50 &57679134
 Rigidbody2D:
   serializedVersion: 4
@@ -963,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1843298639}
   pauseButton: {fileID: 1541518519}
+  continueButton: {fileID: 1927513352}
 --- !u!4 &131789732
 Transform:
   m_ObjectHideFlags: 0
