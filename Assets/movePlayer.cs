@@ -48,7 +48,9 @@ public class movePlayer : MonoBehaviour
 
     private int inHandGun = 0;
     private int rocketBullets = 0;
+    private int rocketBulletsLimit = 0;
     private int flameBullets = 0;
+    private int flameBulletsLimit = 0;
 
     public int specialGunCollected = 0;
     public int specialGunUsed = 0;
@@ -147,7 +149,20 @@ public class movePlayer : MonoBehaviour
             }
 
         }
-        bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+        switch (inHandGun) {
+            case 0:
+                bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+                break;
+            case 1:
+                bulletCountText.text = "Rocket Bullets: " + (rocketBullets) + "/" + rocketBulletsLimit;
+                break;
+            case 2:
+                bulletCountText.text = "Flame Bullets: " + (flameBullets) + "/" + flameBulletsLimit;
+                break;
+            default:
+                break;
+        }
+        
         // Switching guns
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -266,11 +281,13 @@ public class movePlayer : MonoBehaviour
             if (other.name == "RocketPowerup")
             {
                 rocketBullets++;
+                rocketBulletsLimit++;
                 Debug.Log("Rocket bullets: " + rocketBullets);
             }
             else if (other.name == "FlamethrowerPowerup")
             {
                 flameBullets++;
+                flameBulletsLimit++;
                 Debug.Log("Flame bullets: " + flameBullets);
             }
             other.gameObject.SetActive(false);
