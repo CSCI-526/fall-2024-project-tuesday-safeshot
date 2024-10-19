@@ -124,17 +124,6 @@ public class movePlayer : MonoBehaviour
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increNoBullet();
             levelController.increNumOfTries();
-            // Trigger EndGame method from PauseMenuController
-            if (pauseMenuController != null)
-            {
-                pauseMenuController.EndGame();  // This will hide the Continue button and show the correct UI
-            }
-            else
-            {
-                Debug.LogError("PauseMenuController not found.");
-            }
-
-            return;  // Exit the update function to prevent further actions
         }
 
         // If paused, do not allow shooting
