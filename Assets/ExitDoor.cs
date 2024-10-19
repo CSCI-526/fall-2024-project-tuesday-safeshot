@@ -28,6 +28,7 @@ public class ExitDoor : MonoBehaviour
                 Instantiate(winningText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 if (levelController != null)
                 {
