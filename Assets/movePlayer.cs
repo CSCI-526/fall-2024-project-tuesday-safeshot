@@ -304,6 +304,9 @@ public class movePlayer : MonoBehaviour
                 losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
                 losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
+                LevelController levelController = FindObjectOfType<LevelController>();
+                levelController.increTouchLava();
+                levelController.increNumOfTries();                
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
             }

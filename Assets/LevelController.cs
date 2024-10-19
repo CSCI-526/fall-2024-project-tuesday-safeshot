@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
 
     private static int _touchLava;
     private static int _winTries;
+    private static int _restartTries;
     private static int _numOfTries;
     private static bool _ifSuccess;
     
@@ -43,7 +44,9 @@ public class LevelController : MonoBehaviour
     {
         _shootFriend = 0;
         _noBullet = 0;
+        _touchLava = 0;
         _winTries = 0;
+        _restartTries = 0;
         _numOfTries = 0;
         _ifSuccess = false;
     }
@@ -88,6 +91,9 @@ public class LevelController : MonoBehaviour
     public void increWinTries(){
         _winTries += 1;
     }
+    public void increRestartTries(){
+        _restartTries += 1;
+    }
     public void increNumOfTries(){
         _numOfTries += 1;
     }
@@ -103,6 +109,10 @@ public class LevelController : MonoBehaviour
     }
     public int getWinTries(){
         return _winTries;
+    }
+
+    public int getRestartTries(){
+        return _restartTries;
     }
     public int getNumOfTries(){
         return _numOfTries;

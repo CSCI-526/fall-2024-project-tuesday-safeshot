@@ -24,17 +24,18 @@ public class SendToGoogle : MonoBehaviour
         int _touchLava = levelController.getTouchLava();
         int _failTries = _shootFriend + _noBullet + _touchLava;
         int _winTries = levelController.getWinTries();
-        int _numOfTries = levelController.getNumOfTries();
+        int _restartTries = levelController.getRestartTries();
+        int _numOfTries = levelController.getNumOfTries() + _restartTries;
         bool _ifSuccess = levelController.getIfSuccess();
         int levelID = levelController.getCurrentLevelIndex() + 1;
         string _levelID = "level" + levelID.ToString();
         
         if (_numOfTries != 0) {
-            StartCoroutine(PostCompletionData(_sessionID.ToString(), _levelID, _shootFriend.ToString(), _noBullet.ToString(), _touchLava.ToString(), _failTries.ToString(), _winTries.ToString(), _numOfTries.ToString(),  _ifSuccess.ToString()));
+            StartCoroutine(PostCompletionData(_sessionID.ToString(), _levelID, _shootFriend.ToString(), _noBullet.ToString(), _touchLava.ToString(), _failTries.ToString(), _winTries.ToString(), _restartTries.ToString(), _numOfTries.ToString(),  _ifSuccess.ToString()));
         }
     }
 
-    private IEnumerator PostCompletionData(string sessionID, string _levelID, string _shootFriend, string _noBullet, string _touchLava, string _failTries, string _winTries,string _numOfTries, string _ifSuccess)
+    private IEnumerator PostCompletionData(string sessionID, string _levelID, string _shootFriend, string _noBullet, string _touchLava, string _failTries, string _winTries,string _restartTries, string _numOfTries, string _ifSuccess)
     {
         // https://docs.google.com/forms/u/0/d/e/1FAIpQLSeE9fx1ahxn9K7xOgH65phVPEZuSrrIO45OKmUT4Z7AwAWZCg/formResponse
         WWWForm form = new WWWForm();
@@ -47,6 +48,7 @@ public class SendToGoogle : MonoBehaviour
         form.AddField("entry.285909479", _winTries);
         form.AddField("entry.1022432825", _numOfTries);
         form.AddField("entry.697998222", _ifSuccess);
+        form.AddField("entry.191438610", _restartTries);
         
         using (UnityWebRequest www = UnityWebRequest.Post(completionDataURL, form))
         {
@@ -67,7 +69,7 @@ public class SendToGoogle : MonoBehaviour
         LevelController levelController = FindObjectOfType<LevelController>();
         int levelID = levelController.getCurrentLevelIndex() + 1;
         string _levelID = "level" + levelID.ToString();
-        float _efficiency = (float)_bulletUsed / (float)_bulletHas;
+        float _efficiency = 1 - (float)_bulletUsed / (float)_bulletHas;
 
         StartCoroutine(PostBulletUsageData(_sessionID.ToString(), _levelID, _bulletHas.ToString(), _bulletUsed.ToString(), _efficiency.ToString()));
     }
