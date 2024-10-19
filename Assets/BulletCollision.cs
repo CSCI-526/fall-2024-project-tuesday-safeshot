@@ -41,6 +41,7 @@ public class BulletCollision : MonoBehaviour
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 levelController.increShootFriend();
                 levelController.increNumOfTries();

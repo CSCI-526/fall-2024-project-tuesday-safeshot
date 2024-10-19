@@ -38,6 +38,7 @@ public class ExplosionDamage : MonoBehaviour
             gameFail = true;
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
             pauseMenuController.ShowGamePauseMenuDelay();
+            pauseMenuController.EndGame();
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increShootFriend();
             levelController.increNumOfTries();
