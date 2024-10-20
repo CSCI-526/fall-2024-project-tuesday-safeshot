@@ -7,7 +7,9 @@ public class PauseMenuController : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public Button pauseButton; 
+    public Button continueButton;
     private bool isPaused = false;
+    private bool gameOver = false;
     private LevelController levelController;
 
     void Start()
@@ -71,13 +73,25 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+        gameOver = true;
+        continueButton.gameObject.SetActive(false);
+    }
+
     public void Continue()
     {
-        TogglePauseMenu();
+        if (!gameOver) {
+           TogglePauseMenu(); 
+        } else {
+            return;
+        }
+        
     }
 
     public void Restart()
     {
+        levelController.increRestartTries();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

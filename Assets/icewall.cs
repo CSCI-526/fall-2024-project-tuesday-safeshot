@@ -6,6 +6,7 @@ public class icewall : MonoBehaviour
 {
     private int hitCount = 0; 
     public int requiredHits = 5; 
+
     private SpriteRenderer spriteRenderer;
 
     // Initialize and get the SpriteRenderer component
@@ -13,6 +14,7 @@ public class icewall : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
     private void onCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.name == "Bullet (Clone)")
@@ -27,6 +29,7 @@ public class icewall : MonoBehaviour
         Debug.Log("Ice Wall hit count: " + hitCount);
         // Update transparency based on the number of hits
         UpdateTransparency();
+        Debug.Log("Ice Wall hit count: " + hitCount);
         if (hitCount >= requiredHits)
         {
             Destroy(gameObject);
