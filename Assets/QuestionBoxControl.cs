@@ -49,12 +49,12 @@ public class QuestionBoxControl : MonoBehaviour
             player.GetComponent<movePlayer>().questionBoxTouched += 1;
             if (!isTrap) {
                 player.GetComponent<movePlayer>().bulletLimit += extraBullet;
-                SetPopUpText("You have received " + extraBullet + " extra bullets!");
+                SetPopUpText("+" + extraBullet + " bullets!");
             }
             else
             {
                 showHiddenNPC();
-                SetPopUpText("Oops! It's a trap!");
+                SetPopUpText("Oops! A trap!");
             }
 
             gameObject.SetActive(false); // Hide the question box
