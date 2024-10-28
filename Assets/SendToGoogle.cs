@@ -27,7 +27,7 @@ public class SendToGoogle : MonoBehaviour
         int _restartTries = levelController.getRestartTries();
         int _numOfTries = levelController.getNumOfTries() + _restartTries;
         bool _ifSuccess = levelController.getIfSuccess();
-        int levelID = levelController.getCurrentLevelIndex() + 1;
+        int levelID = levelController.getCurrentLevelIndex();
         string _levelID = "level" + levelID.ToString();
         
         if (_numOfTries != 0) {
@@ -67,7 +67,7 @@ public class SendToGoogle : MonoBehaviour
 
     public void SendBulletUsageData(int _bulletHas, int _bulletUsed){
         LevelController levelController = FindObjectOfType<LevelController>();
-        int levelID = levelController.getCurrentLevelIndex() + 1;
+        int levelID = levelController.getCurrentLevelIndex();
         string _levelID = "level" + levelID.ToString();
         float _efficiency = 1 - (float)_bulletUsed / (float)_bulletHas;
 
@@ -101,7 +101,7 @@ public class SendToGoogle : MonoBehaviour
 
     public void SendRewardData(int _specialGunCollected,int _specialGunUsed,  int _questionBoxTouched){
         LevelController levelController = FindObjectOfType<LevelController>();
-        int levelID = levelController.getCurrentLevelIndex() + 1;
+        int levelID = levelController.getCurrentLevelIndex();
         string _levelID = "level" + levelID.ToString();
 
         StartCoroutine(PostRewardData(_sessionID.ToString(), _levelID, _specialGunCollected.ToString(), _specialGunUsed.ToString(), _questionBoxTouched.ToString()));
