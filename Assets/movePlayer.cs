@@ -16,6 +16,8 @@ public class movePlayer : MonoBehaviour
 
     public TextMeshProUGUI bulletCountText;
 
+    public TextMeshProUGUI PlayerBulletCountText;
+
     public int bulletLimit = 10;
 
     public Transform obj;
@@ -68,7 +70,11 @@ public class movePlayer : MonoBehaviour
         ExplosionDamage.setGameOver(false);
 
         rb = GetComponent<Rigidbody2D>();
+        // make bullet count text invisible by setting it's alpha to 0
+        bulletCountText.color = new Color(bulletCountText.color.r, bulletCountText.color.g, bulletCountText.color.b, 0);
+
         bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+        PlayerBulletCountText.text = "" + (bulletLimit - bulletCount);
 
         handgun.SetActive(true);
         rocketGun.SetActive(false);
@@ -141,12 +147,15 @@ public class movePlayer : MonoBehaviour
         switch (inHandGun) {
             case 0:
                 bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
+                PlayerBulletCountText.text = "" + (bulletLimit - bulletCount);
                 break;
             case 1:
                 bulletCountText.text = "Rocket Bullets: " + (rocketBullets) + "/" + rocketBulletsLimit;
+                PlayerBulletCountText.text = "" + (rocketBullets);
                 break;
             case 2:
                 bulletCountText.text = "Flame Bullets: " + (flameBullets) + "/" + flameBulletsLimit;
+                PlayerBulletCountText.text = "" + (flameBullets);
                 break;
             default:
                 break;
