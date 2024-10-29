@@ -44,5 +44,9 @@ public class ExplosionDamage : MonoBehaviour
             levelController.increNumOfTries();
             other.GetComponent<SpriteRenderer>().color = Color.grey;
         }
+        if (other.gameObject.tag == "BreakableWall")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
