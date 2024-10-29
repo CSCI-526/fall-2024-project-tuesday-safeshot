@@ -8,15 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class FireGun : MonoBehaviour
 {
-    public GameObject gunPopUps;           
-    public TextMeshProUGUI popupText;        
-    public Button continueButton;           
+    public GameObject gunPopUps;
+    public TextMeshProUGUI popupText;
+    public Button continueButton;
     public string powerupMessage;
-    private bool hasShownPopup = false;     
+    private bool hasShownPopup = false;
 
     private void Start()
     {
-        gunPopUps.SetActive(false);        
+        gunPopUps.SetActive(false);
+        continueButton.GetComponent<RectTransform>().sizeDelta = new Vector2(continueButton.GetComponent<RectTransform>().sizeDelta.x, 100);
         continueButton.onClick.AddListener(HidePopup);
     }
 
@@ -24,25 +25,27 @@ public class FireGun : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level3" && collision.gameObject.name == "FlamethrowerPowerup")
         {
-            return; 
+            return;
         }
 
         if (collision.gameObject.name == "FlamethrowerPowerup")
         {
             Debug.Log("Player picked up Flamethrower Powerup");
-            powerupMessage = "Acquire the flame power up! Now you can shift to fire gun by clicking 3 and break the ice wall with one shot!";
+            powerupMessage = "Acquired Flame power up! \nYou can switch to fire gun by pressing 3 and break the ice wall in one shot!";
 
             if (!hasShownPopup)
             {
                 hasShownPopup = true;
                 ShowPopup();
+                continueButton.GetComponent<RectTransform>().sizeDelta = new Vector2(continueButton.GetComponent<RectTransform>().sizeDelta.x, 100);
+
                 PauseGame();
             }
         }
         else if (collision.gameObject.name == "RocketPowerup")
         {
             Debug.Log("Player picked up Rocket Powerup");
-            powerupMessage = "Acquire the Rocket power up! Now you can shift to rocket gun by clicking 2 and create wider attacks!";
+            powerupMessage = "Acquired Rocket power up! \nYou can switch to rocket gun by pressing 2, jump a longer distance and beware of the explosion!";
 
             if (!hasShownPopup)
             {
@@ -55,23 +58,23 @@ public class FireGun : MonoBehaviour
 
     private void ShowPopup()
     {
-        popupText.text = powerupMessage;    
-        gunPopUps.SetActive(true);           
+        popupText.text = powerupMessage;
+        gunPopUps.SetActive(true);
     }
 
     private void HidePopup()
     {
-        gunPopUps.SetActive(false);          
+        gunPopUps.SetActive(false);
         hasShownPopup = false;
-        ResumeGame();           
+        ResumeGame();
     }
     private void PauseGame()
     {
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
     }
     private void ResumeGame()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
     }
 
 }
