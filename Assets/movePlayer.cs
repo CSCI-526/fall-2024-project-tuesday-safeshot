@@ -83,6 +83,19 @@ public class movePlayer : MonoBehaviour
         gun = handgun.transform;
     }
 
+    void setPlayerBulletCountText(int bulletCount)
+    {
+        PlayerBulletCountText.text = "" + bulletCount;
+        if (bulletCount <= 5)
+        {
+            PlayerBulletCountText.fontSize = 46;
+        }
+        else
+        {
+            PlayerBulletCountText.fontSize = 36;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -147,15 +160,15 @@ public class movePlayer : MonoBehaviour
         switch (inHandGun) {
             case 0:
                 bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
-                PlayerBulletCountText.text = "" + (bulletLimit - bulletCount);
+                setPlayerBulletCountText(bulletLimit - bulletCount);
                 break;
             case 1:
                 bulletCountText.text = "Rocket Bullets: " + (rocketBullets) + "/" + rocketBulletsLimit;
-                PlayerBulletCountText.text = "" + (rocketBullets);
+                setPlayerBulletCountText(rocketBullets);
                 break;
             case 2:
                 bulletCountText.text = "Flame Bullets: " + (flameBullets) + "/" + flameBulletsLimit;
-                PlayerBulletCountText.text = "" + (flameBullets);
+                setPlayerBulletCountText(flameBullets);
                 break;
             default:
                 break;

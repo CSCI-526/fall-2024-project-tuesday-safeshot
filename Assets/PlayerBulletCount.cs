@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerBulletCount : MonoBehaviour
 {
     public GameObject playerBody;
-    private Vector3 offsetAbove = new Vector3(0, 0.8f, 0); 
-    private Vector3 offsetBelow = new Vector3(0, -0.8f, 0);
+    private Vector3 offsetAbove = new Vector3(0, 0.9f, 0); 
+    private Vector3 offsetBelow = new Vector3(0, -0.9f, 0);
     
     private Camera mainCamera;
     private float screenHeightThreshold = 0.9f;
