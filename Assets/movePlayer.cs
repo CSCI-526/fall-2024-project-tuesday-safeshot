@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,6 +62,7 @@ public class movePlayer : MonoBehaviour
     public PauseMenuController pauseMenuController;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +119,13 @@ public class movePlayer : MonoBehaviour
             gameOver = true;
         }
 
+        // If paused, do not allow shooting
+        PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+        if (pauseMenuController != null && pauseMenuController.IsPaused())
+        {
+            return;
+        }
+
         if (bulletCount >= bulletLimit && rb.velocity.magnitude < 0.00001f && rocketBullets <= 0 && flameBullets <= 0)
         {
             Debug.Log("Game Over as you have no bullets left");
@@ -125,18 +134,12 @@ public class movePlayer : MonoBehaviour
             losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
             losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
             Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
-            PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+            // PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
             pauseMenuController.ShowGamePauseMenuDelay();
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increNoBullet();
             levelController.increNumOfTries();
             pauseMenuController.EndGame();
-        }
-
-        // If paused, do not allow shooting
-        if (pauseMenuController != null && pauseMenuController.IsPaused())
-        {
-            return;
         }
 
         // Shooting Mechanics
