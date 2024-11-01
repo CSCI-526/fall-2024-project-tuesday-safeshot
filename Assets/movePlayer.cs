@@ -140,7 +140,7 @@ public class movePlayer : MonoBehaviour
         }
 
         // Shooting Mechanics
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             if (bulletCount < bulletLimit || flameBullets > 0 || rocketBullets > 0)
             {
@@ -157,7 +157,8 @@ public class movePlayer : MonoBehaviour
             }
 
         }
-        switch (inHandGun) {
+        switch (inHandGun)
+        {
             case 0:
                 bulletCountText.text = "Bullets: " + (bulletLimit - bulletCount) + "/" + bulletLimit;
                 setPlayerBulletCountText(bulletLimit - bulletCount);
@@ -173,7 +174,7 @@ public class movePlayer : MonoBehaviour
             default:
                 break;
         }
-        
+
         // Switching guns
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -316,7 +317,7 @@ public class movePlayer : MonoBehaviour
                 Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 LevelController levelController = FindObjectOfType<LevelController>();
                 levelController.increTouchLava();
-                levelController.increNumOfTries();                
+                levelController.increNumOfTries();
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
                 pauseMenuController.ShowGamePauseMenuDelay();
                 pauseMenuController.EndGame();
