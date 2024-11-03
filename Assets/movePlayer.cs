@@ -142,6 +142,8 @@ public class movePlayer : MonoBehaviour
             pauseMenuController.EndGame();
         }
 
+        AutoSwitchGunIfNecessary();
+
         // Shooting Mechanics
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
@@ -157,6 +159,7 @@ public class movePlayer : MonoBehaviour
 
                 Vector2 accelerationForce = new Vector2(-dirX, -dirY) * force;
                 ShootBullet(inHandGun, accelerationForce);
+                AutoSwitchGunIfNecessary();
             }
 
         }
@@ -207,6 +210,13 @@ public class movePlayer : MonoBehaviour
             fireGun.SetActive(true);
             gun = fireGun.transform;
         }
+    }
+
+    bool CanShootCurrentGun()
+    {
+        return (inHandGun == 0 && bulletCount < bulletLimit) ||
+               (inHandGun == 1 && rocketBullets > 0) ||
+               (inHandGun == 2 && flameBullets > 0);
     }
 
     void ShootBullet(int bullettype = 0, Vector2 accelerationForce = new Vector2())
@@ -326,6 +336,76 @@ public class movePlayer : MonoBehaviour
                 pauseMenuController.EndGame();
             }
         }
+    }
+
+    void AutoSwitchGunIfNecessary()
+    {
+        if (inHandGun == 0 && bulletCount >= bulletLimit) // Handgun out of bullets
+        {
+            if (rocketBullets > 0)
+            {
+                SwitchToRocketGun();
+            }
+            else if (flameBullets > 0)
+            {
+                SwitchToFlameGun();
+            }
+        }
+        else if (inHandGun == 1 && rocketBullets <= 0) // Rocket gun out of bullets
+        {
+            if (flameBullets > 0)
+            {
+                SwitchToFlameGun();
+            }
+            else if (bulletCount < bulletLimit)
+            {
+                SwitchToHandgun();
+            }
+        }
+        else if (inHandGun == 2 && flameBullets <= 0) // Flame gun out of bullets
+        {
+            if (rocketBullets > 0)
+            {
+                SwitchToRocketGun();
+            }
+            else if (bulletCount < bulletLimit)
+            {
+                SwitchToHandgun();
+            }
+        }
+    }
+
+    public void SwitchToHandgun()
+    {
+        inHandGun = 0;
+        force = handgunForce;
+        handgun.SetActive(true);
+        rocketGun.SetActive(false);
+        fireGun.SetActive(false);
+        gun = handgun.transform;
+        Debug.Log("Switched to Handgun");
+    }
+
+    public void SwitchToRocketGun()
+    {
+        inHandGun = 1;
+        force = rocketForce;
+        handgun.SetActive(false);
+        rocketGun.SetActive(true);
+        fireGun.SetActive(false);
+        gun = rocketGun.transform;
+        Debug.Log("Switched to Rocket Gun");
+    }
+
+    public void SwitchToFlameGun()
+    {
+        inHandGun = 2;
+        force = fireForce;
+        handgun.SetActive(false);
+        rocketGun.SetActive(false);
+        fireGun.SetActive(true);
+        gun = fireGun.transform;
+        Debug.Log("Switched to Flame Gun");
     }
 
     public int getBulletUsed()
