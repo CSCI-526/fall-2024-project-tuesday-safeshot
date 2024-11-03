@@ -38,6 +38,8 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         // Check for left mouse button click
+        // do this only if the game is not paused
+        
         if (Input.GetMouseButtonDown(0))
         {
             ShootBullet();

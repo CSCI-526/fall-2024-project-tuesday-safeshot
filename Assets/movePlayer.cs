@@ -120,8 +120,14 @@ public class movePlayer : MonoBehaviour
         }
 
         // If paused, do not allow shooting
-        PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
+        PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();       
         if (pauseMenuController != null && pauseMenuController.IsPaused())
+        {
+            return;
+        }
+
+        GunPopUp gunPopUp = GetComponent<GunPopUp>();
+        if (gunPopUp != null && gunPopUp.IsPaused())
         {
             return;
         }

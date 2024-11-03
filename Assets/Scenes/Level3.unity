@@ -2023,6 +2023,7 @@ GameObject:
   - component: {fileID: 454815458}
   - component: {fileID: 454815460}
   - component: {fileID: 454815459}
+  - component: {fileID: 454815461}
   m_Layer: 0
   m_Name: RocketPowerup (2)
   m_TagString: GunPowerup
@@ -2142,6 +2143,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &454815461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454815457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &465325025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,6 +3568,7 @@ GameObject:
   - component: {fileID: 707250254}
   - component: {fileID: 707250256}
   - component: {fileID: 707250255}
+  - component: {fileID: 707250257}
   m_Layer: 0
   m_Name: RocketPowerup (1)
   m_TagString: GunPowerup
@@ -3673,6 +3688,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &707250257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707250253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &723874362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,6 +3870,7 @@ GameObject:
   - component: {fileID: 794370593}
   - component: {fileID: 794370595}
   - component: {fileID: 794370594}
+  - component: {fileID: 794370596}
   m_Layer: 0
   m_Name: FlamethrowerPowerup (3)
   m_TagString: GunPowerup
@@ -3961,6 +3990,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &794370596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794370592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &889656936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4508,6 +4550,7 @@ GameObject:
   - component: {fileID: 980201308}
   - component: {fileID: 980201310}
   - component: {fileID: 980201309}
+  - component: {fileID: 980201311}
   m_Layer: 0
   m_Name: FlamethrowerPowerup (2)
   m_TagString: GunPowerup
@@ -4627,6 +4670,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &980201311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980201307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &1000923320
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,6 +4694,7 @@ GameObject:
   - component: {fileID: 1000923321}
   - component: {fileID: 1000923323}
   - component: {fileID: 1000923322}
+  - component: {fileID: 1000923324}
   m_Layer: 0
   m_Name: FlamethrowerPowerup (4)
   m_TagString: GunPowerup
@@ -4757,6 +4814,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1000923324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000923320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &1020268930
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,6 +6171,7 @@ GameObject:
   - component: {fileID: 1289339158}
   - component: {fileID: 1289339160}
   - component: {fileID: 1289339159}
+  - component: {fileID: 1289339161}
   m_Layer: 0
   m_Name: FlamethrowerPowerup
   m_TagString: GunPowerup
@@ -6220,6 +6291,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1289339161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289339157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &1315042918
 GameObject:
   m_ObjectHideFlags: 0
@@ -7170,6 +7254,7 @@ GameObject:
   - component: {fileID: 1415693129}
   - component: {fileID: 1415693131}
   - component: {fileID: 1415693130}
+  - component: {fileID: 1415693132}
   m_Layer: 0
   m_Name: RocketPowerup
   m_TagString: GunPowerup
@@ -7289,6 +7374,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1415693132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415693128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &1431144368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11433,6 +11531,7 @@ GameObject:
   - component: {fileID: 2130736480}
   - component: {fileID: 2130736482}
   - component: {fileID: 2130736481}
+  - component: {fileID: 2130736483}
   m_Layer: 0
   m_Name: FlamethrowerPowerup (1)
   m_TagString: GunPowerup
@@ -11552,6 +11651,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2130736483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130736479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae9320add78cf74bb02890ce38302c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 1
 --- !u!1 &2147028550
 GameObject:
   m_ObjectHideFlags: 0

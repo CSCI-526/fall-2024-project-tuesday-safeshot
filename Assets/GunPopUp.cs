@@ -6,13 +6,14 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FireGun : MonoBehaviour
+public class GunPopUp : MonoBehaviour
 {
     public GameObject gunPopUps;
     public TextMeshProUGUI popupText;
     public Button continueButton;
     public string powerupMessage;
     private bool hasShownPopup = false;
+    private bool isPaused = false;
 
     private void Start()
     {
@@ -65,16 +66,23 @@ public class FireGun : MonoBehaviour
     private void HidePopup()
     {
         gunPopUps.SetActive(false);
-        hasShownPopup = false;
+        // hasShownPopup = false;
         ResumeGame();
     }
     private void PauseGame()
     {
         Time.timeScale = 0f;
+        isPaused = true;
     }
     private void ResumeGame()
     {
         Time.timeScale = 1f;
+        isPaused = false;
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
     }
 
 }
