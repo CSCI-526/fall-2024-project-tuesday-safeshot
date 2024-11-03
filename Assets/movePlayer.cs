@@ -182,7 +182,7 @@ public class movePlayer : MonoBehaviour
         }
 
         // Switching guns
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && bulletCount < bulletLimit)
         {
             inHandGun = 0;
             force = handgunForce;
@@ -192,7 +192,7 @@ public class movePlayer : MonoBehaviour
             gun = handgun.transform;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && rocketBullets > 0)
         {
             inHandGun = 1;
             force = rocketForce;
@@ -201,7 +201,7 @@ public class movePlayer : MonoBehaviour
             fireGun.SetActive(false);
             gun = rocketGun.transform;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && flameBullets > 0)
         {
             inHandGun = 2;
             force = fireForce;
@@ -303,16 +303,17 @@ public class movePlayer : MonoBehaviour
         {
             Debug.Log("Gun powerup, " + other.gameObject.name + " collected");
             specialGunCollected++;
-            if (other.name == "RocketPowerup")
+            if (other.name.StartsWith("Rocket"))
             {
-                rocketBullets++;
-                rocketBulletsLimit++;
+                rocketBullets += other.gameObject.GetComponent<SpecialBulletControl>().bulletNum;
+                rocketBulletsLimit += other.gameObject.GetComponent<SpecialBulletControl>().bulletNum;
                 Debug.Log("Rocket bullets: " + rocketBullets);
             }
-            else if (other.name == "FlamethrowerPowerup")
+            else if (other.name.StartsWith("Flame"))
             {
-                flameBullets++;
-                flameBulletsLimit++;
+                // get variable other bulletNum from SpecialBulletControl
+                flameBullets += other.gameObject.GetComponent<SpecialBulletControl>().bulletNum;
+                flameBulletsLimit += other.gameObject.GetComponent<SpecialBulletControl>().bulletNum;
                 Debug.Log("Flame bullets: " + flameBullets);
             }
             other.gameObject.SetActive(false);
@@ -353,24 +354,24 @@ public class movePlayer : MonoBehaviour
         }
         else if (inHandGun == 1 && rocketBullets <= 0) // Rocket gun out of bullets
         {
-            if (flameBullets > 0)
-            {
-                SwitchToFlameGun();
-            }
-            else if (bulletCount < bulletLimit)
+            if (bulletCount < bulletLimit)
             {
                 SwitchToHandgun();
+            }
+            else if (flameBullets > 0)
+            {
+                SwitchToFlameGun();
             }
         }
         else if (inHandGun == 2 && flameBullets <= 0) // Flame gun out of bullets
         {
-            if (rocketBullets > 0)
-            {
-                SwitchToRocketGun();
-            }
-            else if (bulletCount < bulletLimit)
+            if (bulletCount < bulletLimit)
             {
                 SwitchToHandgun();
+            }
+            else if (rocketBullets > 0)
+            {
+                SwitchToRocketGun();
             }
         }
     }
