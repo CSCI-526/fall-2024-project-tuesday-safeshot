@@ -101,6 +101,8 @@ public class movePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Call the update function in LavaAlphaController
+        LavaAlphaController.UpdateLavaAlpha();       
         // Game Over mechanics
         if (gameOver)
         {

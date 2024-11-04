@@ -10,7 +10,10 @@ public class autoMenuLayout : MonoBehaviour
     float verticalPaddingPercentage = 0.1F;
     float verticalSpacingPercentage = 0.1F;
     float fontSizePercentage = 0.05F;
-    // Start is called before the first frame update
+
+
+
+
     void Start()
     {
         
@@ -20,6 +23,17 @@ public class autoMenuLayout : MonoBehaviour
     void Update()
     {
         updateMenuLayout();
+       
+        /*
+        foreach (var entry in originalFontSizes)
+        {
+            TextMeshProUGUI text = entry.Key;
+            float originalSize = entry.Value;
+
+            // Set font size to 1.5 times the original
+            text.fontSize = originalSize * 1.5f;
+        }
+        */
     }
 
 
@@ -45,7 +59,7 @@ public class autoMenuLayout : MonoBehaviour
             // Traverse each child and adjust font size
             foreach (Transform child in transform)
             {
-                TraverseAndAdjustFontSize(child, parentRect.rect.width);
+                //TraverseAndAdjustFontSize(child, parentRect.rect.width);
             }
 
             // Force layout update
@@ -70,3 +84,6 @@ public class autoMenuLayout : MonoBehaviour
         }
     }
 }
+
+
+
