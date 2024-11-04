@@ -25,9 +25,8 @@ public class ExitDoor : MonoBehaviour
             if (!gameOver && BulletCollision.isGameOver() == false)
             {
                 gameOver = true;                
-                Instantiate(winningText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.ShowGamePauseMenuDelay(true, "You Win!\n(Return to Main Menu for next level)");
                 pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 if (levelController != null)

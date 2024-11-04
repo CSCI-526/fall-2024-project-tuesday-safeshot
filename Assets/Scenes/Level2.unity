@@ -1224,6 +1224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1843298639}
+  Canvas: {fileID: 0}
+  buttonPanel: {fileID: 1843298639}
+  losingText: {fileID: 4323044162312228118, guid: dbffa72407be84dac9f89000140ba4e7, type: 3}
+  winningText: {fileID: 1114450962436065125, guid: a9ae4924ddea841efb6f80966241da68, type: 3}
   pauseButton: {fileID: 1541518519}
   continueButton: {fileID: 1927513352}
 --- !u!4 &131789732

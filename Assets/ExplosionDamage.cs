@@ -31,13 +31,9 @@ public class ExplosionDamage : MonoBehaviour
         Debug.Log("Explosion collided with " + other.gameObject.tag);
         if (other.gameObject.tag == "NPC")
         {
-            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over\nYou exploded a friend :(";
-            losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
-            losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-            Instantiate(losingText, new Vector3(0, 800, 0), Quaternion.identity);
             gameFail = true;
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-            pauseMenuController.ShowGamePauseMenuDelay();
+            pauseMenuController.ShowGamePauseMenuDelay(false, "Game Over\nYou exploded a friend :(");
             pauseMenuController.EndGame();
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increShootFriend();

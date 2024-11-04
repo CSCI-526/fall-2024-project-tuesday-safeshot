@@ -14,9 +14,8 @@ public class PlayerCollision : MonoBehaviour
             if (!gameOver)
             {
                 gameOver = true;
-                Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.ShowGamePauseMenuDelay(false,"Game Over!\nYou died by Lava!" );
                 pauseMenuController.EndGame();
             }
         }

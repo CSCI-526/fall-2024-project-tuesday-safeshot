@@ -35,12 +35,8 @@ public class BulletCollision : MonoBehaviour
             if (!gameOver)
             {
                 gameOver = true;
-                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over\nYou shot a friend :(";
-                losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(400, losingText.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.y);
-                losingText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-                Instantiate(losingText, new Vector3(0, 0, 0), Quaternion.identity);
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay();
+                pauseMenuController.ShowGamePauseMenuDelay(false,"Game Over\nYou shot a friend :(");
                 pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 levelController.increShootFriend();

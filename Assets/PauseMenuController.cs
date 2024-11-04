@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PauseMenuController : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    [SerializeField] private Canvas Canvas;
+    [SerializeField] private GameObject buttonPanel;
+    public GameObject losingText;
+    public GameObject winningText;
     public Button pauseButton; 
     public Button continueButton;
     private bool isPaused = false;
@@ -60,17 +65,18 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    public void ShowGamePauseMenuDelay()
+    public void ShowGamePauseMenuDelay(bool isWin, string message)
     {
-        StartCoroutine(ShowGamePauseMenuCoroutine());
+        StartCoroutine(ShowGamePauseMenuCoroutine(isWin, message));
     }
-    private IEnumerator ShowGamePauseMenuCoroutine(){
+    private IEnumerator ShowGamePauseMenuCoroutine(bool isWin, string message){
         yield return new WaitForSeconds(1f);
 
         if (!isPaused)
         {
             TogglePauseMenu();
         }
+        ShowGameResult(isWin, message);
     }
 
     public void EndGame()
@@ -78,6 +84,37 @@ public class PauseMenuController : MonoBehaviour
         gameOver = true;
         continueButton.gameObject.SetActive(false);
     }
+
+    public void ShowGameResult(bool isWin, string message)
+    {
+        GameObject textPrefab = isWin ? winningText : losingText;
+        GameObject instantiatedText = Instantiate(textPrefab, buttonPanel.transform);
+        TextMeshProUGUI textComponent = instantiatedText.GetComponent<TextMeshProUGUI>();
+        textComponent.text = message;
+
+        Color winTextColor;
+        ColorUtility.TryParseHtmlString("#3B892E", out winTextColor); 
+        Color loseTextColor;
+        ColorUtility.TryParseHtmlString("#E52100", out loseTextColor);
+        if (isWin) {
+            textComponent.color = winTextColor;
+        } else {
+            textComponent.color = loseTextColor;
+        }
+        textComponent.fontSize = 48;  
+        textComponent.enableWordWrapping = false; 
+        textComponent.overflowMode = TMPro.TextOverflowModes.Overflow; 
+
+        RectTransform rectTransform = instantiatedText.GetComponent<RectTransform>();
+        rectTransform.anchorMin = new Vector2(0f, 1f);  
+        rectTransform.anchorMax = new Vector2(0f, 1f); 
+        rectTransform.pivot = new Vector2(0.5f, 0.5f); 
+        rectTransform.anchoredPosition = new Vector2(625f, -30f);
+        rectTransform.sizeDelta = new Vector2(800f, 20f);
+        rectTransform.localScale = Vector3.one;
+        instantiatedText.transform.SetAsFirstSibling();
+    }
+
 
     public void Continue()
     {
