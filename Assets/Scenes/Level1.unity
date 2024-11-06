@@ -6701,6 +6701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 57679132}
+  maxX: 1
+  maxY: 1
 --- !u!1 &1541518517
 GameObject:
   m_ObjectHideFlags: 0
