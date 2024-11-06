@@ -78,7 +78,5 @@ public class BulletController : MonoBehaviour
         bulletCount++;
         Debug.Log("Bullet count: " + bulletCount);
 
-        // Destroy the bullet after 2 seconds
-        Destroy(bullet, 2f);
     }
 }
