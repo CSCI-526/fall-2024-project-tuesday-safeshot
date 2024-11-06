@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -32,7 +33,13 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         Debug.Log("LevelManager Start method called.");
+        // Find all buttons in the scene ordered 
         levelButtons = GameObject.FindObjectsOfType<Button>();
+        levelButtons = levelButtons.OrderBy(b => b.gameObject.name).ToArray();
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            Debug.Log(i + ": " + levelButtons[i].gameObject.name);
+        }
         // ResetAllLevelStatus();
         InitializeLevelStatus();
         UpdateButtonStates();
@@ -95,6 +102,7 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevel(int levelIndex)
     {
+        Debug.Log("Loading level " + levelIndex);
         SceneManager.LoadScene("Level" + levelIndex);
     }
 
