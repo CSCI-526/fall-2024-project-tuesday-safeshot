@@ -9,6 +9,7 @@ TagManager:
   - GunPowerup
   - lava
   - icewall
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
