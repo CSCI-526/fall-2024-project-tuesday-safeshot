@@ -149,10 +149,12 @@ public class PauseMenuController : MonoBehaviour
         levelController.SendGoogleCompletionData();
         levelController.SendGooglePlayerLocationData();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("currentSceneIndex: " + currentSceneIndex);
         int nextSceneIndex = currentSceneIndex + 1;
+        Debug.Log("nextSceneIndex: " + nextSceneIndex);
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene("Level"+nextSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
