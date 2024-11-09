@@ -76,6 +76,8 @@ public class PauseMenuController : MonoBehaviour
         {
             NextLevelButton.gameObject.SetActive(false);
         }
+
+
     }
 
     public void EndGame()
@@ -128,6 +130,7 @@ public class PauseMenuController : MonoBehaviour
     public void Restart()
     {
         levelController.increRestartTries();
+        levelController.SendGooglePlayerLocationData();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -135,6 +138,7 @@ public class PauseMenuController : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
+        levelController.SendGooglePlayerLocationData();
         SceneManager.LoadScene("MainMenu");
         levelController.SendGoogleCompletionData();
     }
@@ -143,6 +147,7 @@ public class PauseMenuController : MonoBehaviour
     {
         Time.timeScale = 1;
         levelController.SendGoogleCompletionData();
+        levelController.SendGooglePlayerLocationData();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)

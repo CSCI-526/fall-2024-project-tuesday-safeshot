@@ -9,6 +9,7 @@ public class SendToGoogle : MonoBehaviour
     private string completionDataURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeE9fx1ahxn9K7xOgH65phVPEZuSrrIO45OKmUT4Z7AwAWZCg/formResponse";
     private string bulletUsageURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdnl738ebF3ed4m0UARsbS2hYSbCEWqHVkKPHYDJMal0bIhIA/formResponse";
     private string rewardDataURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScLnT6MliSA3EXORLUVmMKh0Me6ur2KIpAZUeOv-PdBECKB7w/formResponse";
+    private string playerLocationURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeOb_Z_XlVnYN_zHQaQHx6_8-WlVjcMnUNzAvgkShhJeNXXbg/formResponse";
 
     private long _sessionID;
 
@@ -140,15 +141,18 @@ public class SendToGoogle : MonoBehaviour
     }
 
     private IEnumerator PostPlayerLocationData(string sessionID, string _levelID, List<Vector2> _playerLocations){
-        // https://docs.google.com/forms/u/0/d/e/1FAIpQLScLnT6MliSA3EXORLUVmMKh0Me6ur2KIpAZUeOv-PdBECKB7w/formResponse
+        // https://docs.google.com/forms/u/0/d/e/1FAIpQLSeOb_Z_XlVnYN_zHQaQHx6_8-WlVjcMnUNzAvgkShhJeNXXbg/formResponse
         WWWForm form = new WWWForm();
-        form.AddField("entry.1857760284", sessionID);
-        form.AddField("entry.3636898", _levelID);
+        form.AddField("entry.662485045", sessionID);
+        form.AddField("entry.1033372245", _levelID);
+        string _sendPlayerLocations = "";
         for (int i = 0; i < _playerLocations.Count; i++){
-            form.AddField("entry." + (i + 1).ToString(), _playerLocations[i].ToString());
+            _sendPlayerLocations += _playerLocations[i].ToString() + ",";
         }
 
-        using (UnityWebRequest www = UnityWebRequest.Post(rewardDataURL, form))
+        form.AddField("entry.1663591504", _sendPlayerLocations);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(playerLocationURL, form))
         {
             yield return www.SendWebRequest();
 

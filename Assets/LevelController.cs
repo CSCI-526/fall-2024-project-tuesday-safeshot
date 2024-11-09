@@ -80,6 +80,11 @@ public class LevelController : MonoBehaviour
         sendToGoogle.SendRewardData(specialGunCollected, specialGunUsed, questionBoxTouched);
     }
 
+    public void SendGooglePlayerLocationData(){
+        SendToGoogle sendToGoogle = FindObjectOfType<SendToGoogle>();
+        sendToGoogle.SendPlayerLocationData(_playerLocations);
+    }
+
 
     public void increShootFriend(){
         _shootFriend += 1;
@@ -105,7 +110,7 @@ public class LevelController : MonoBehaviour
         _ifSuccess = true;
     }
 
-    public void recordPlayerLocation(Vector3 playerLocation){
+    public void recordPlayerLocation(Vector2 playerLocation){
         if (_playerLocations == null)
         {
             _playerLocations = new List<Vector2>();
