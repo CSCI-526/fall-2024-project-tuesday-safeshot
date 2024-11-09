@@ -11,7 +11,7 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     public GameObject losingText;
     public GameObject winningText;
-    public Button pauseButton; 
+    public Button pauseButton; // Optional, no longer required
     public Button continueButton;
     public Button NextLevelButton;
     private bool isPaused = false;
@@ -24,21 +24,19 @@ public class PauseMenuController : MonoBehaviour
         pauseMenuUI.SetActive(false);
         NextLevelButton.gameObject.SetActive(false);
 
+        // Remove pause button functionality
         if (pauseButton != null)
         {
-            pauseButton.onClick.AddListener(TogglePauseMenu);
-        }
-        else
-        {
-            Debug.LogError("Pause button is not assigned!");
+            pauseButton.gameObject.SetActive(false); // Disable or hide the button
         }
     }
 
     void Update()
     {
+        // Toggle pause menu with Escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePauseMenu();
+            MainMenu();
         }
     }
 
@@ -53,15 +51,10 @@ public class PauseMenuController : MonoBehaviour
         isPaused = !isPaused;
         pauseMenuUI.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
-
-        if (pauseButton != null)
-        {
-            pauseButton.gameObject.SetActive(!isPaused);
-        }
     }
+
     public void ShowGamePauseMenu(bool isWin, string message)
     {
-
         if (!isPaused)
         {
             TogglePauseMenu();
@@ -76,8 +69,6 @@ public class PauseMenuController : MonoBehaviour
         {
             NextLevelButton.gameObject.SetActive(false);
         }
-
-
     }
 
     public void EndGame()
@@ -116,7 +107,6 @@ public class PauseMenuController : MonoBehaviour
         instantiatedText.transform.SetAsFirstSibling();
     }
 
-
     public void Continue()
     {
         if (!gameOver) {
@@ -124,7 +114,6 @@ public class PauseMenuController : MonoBehaviour
         } else {
             return;
         }
-        
     }
 
     public void Restart()
