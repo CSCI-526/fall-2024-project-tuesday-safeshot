@@ -141,12 +141,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void NextLevel()
     {
-        // levelController.SendGoogleCompletionData();
         Time.timeScale = 1;
-        Debug.Log("Now Level:" + SceneManager.GetActiveScene().buildIndex);
+        levelController.SendGoogleCompletionData();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
-        Debug.Log("Next Level:" + nextSceneIndex);
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene("Level"+nextSceneIndex);
