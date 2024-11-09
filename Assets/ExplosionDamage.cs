@@ -33,7 +33,7 @@ public class ExplosionDamage : MonoBehaviour
         {
             gameFail = true;
             PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-            pauseMenuController.ShowGamePauseMenuDelay(false, "Game Over\nYou exploded a friend :(");
+            pauseMenuController.ShowGamePauseMenu(false, "Game Over\nYou exploded a friend :(");
             pauseMenuController.EndGame();
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increShootFriend();

@@ -36,7 +36,7 @@ public class BulletCollision : MonoBehaviour
             {
                 gameOver = true;
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay(false,"Game Over\nYou shot a friend :(");
+                pauseMenuController.ShowGamePauseMenu(false,"Game Over\nYou shot a friend :(");
                 pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 levelController.increShootFriend();

@@ -13,6 +13,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject winningText;
     public Button pauseButton; 
     public Button continueButton;
+    public Button NextLevelButton;
     private bool isPaused = false;
     private bool gameOver = false;
     private LevelController levelController;
@@ -21,6 +22,7 @@ public class PauseMenuController : MonoBehaviour
     {
         levelController = FindObjectOfType<LevelController>();
         pauseMenuUI.SetActive(false);
+        NextLevelButton.gameObject.SetActive(false);
 
         if (pauseButton != null)
         {
@@ -57,26 +59,23 @@ public class PauseMenuController : MonoBehaviour
             pauseButton.gameObject.SetActive(!isPaused);
         }
     }
-    public void ShowGamePauseMenu()
+    public void ShowGamePauseMenu(bool isWin, string message)
     {
-        if (!isPaused)
-        {
-            TogglePauseMenu();
-        }
-    }
-
-    public void ShowGamePauseMenuDelay(bool isWin, string message)
-    {
-        StartCoroutine(ShowGamePauseMenuCoroutine(isWin, message));
-    }
-    private IEnumerator ShowGamePauseMenuCoroutine(bool isWin, string message){
-        yield return new WaitForSeconds(1f);
 
         if (!isPaused)
         {
             TogglePauseMenu();
         }
         ShowGameResult(isWin, message);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1 && isWin)
+        {
+            NextLevelButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            NextLevelButton.gameObject.SetActive(false);
+        }
     }
 
     public void EndGame()
@@ -138,5 +137,23 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
         levelController.SendGoogleCompletionData();
+    }
+
+    public void NextLevel()
+    {
+        // levelController.SendGoogleCompletionData();
+        Time.timeScale = 1;
+        Debug.Log("Now Level:" + SceneManager.GetActiveScene().buildIndex);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        Debug.Log("Next Level:" + nextSceneIndex);
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene("Level"+nextSceneIndex);
+        }
+        else
+        {
+            Debug.Log("No more levels available!");
+        }
     }
 }

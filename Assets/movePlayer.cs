@@ -138,7 +138,7 @@ public class movePlayer : MonoBehaviour
         {
             Debug.Log("Game Over as you have no bullets left");
             gameOver = true;
-            pauseMenuController.ShowGamePauseMenuDelay(false, "Game Over\nNo bullets left!");
+            pauseMenuController.ShowGamePauseMenu(false, "Game Over\nNo bullets left!");
             LevelController levelController = FindObjectOfType<LevelController>();
             levelController.increNoBullet();
             levelController.increNumOfTries();
@@ -332,7 +332,7 @@ public class movePlayer : MonoBehaviour
                 levelController.increTouchLava();
                 levelController.increNumOfTries();
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenuDelay(false, "Game Over!\nYou died by Lava!");
+                pauseMenuController.ShowGamePauseMenu(false, "Game Over!\nYou died by Lava!");
                 pauseMenuController.EndGame();
             }
         }
