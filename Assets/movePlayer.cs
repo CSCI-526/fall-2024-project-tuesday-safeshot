@@ -162,6 +162,9 @@ public class movePlayer : MonoBehaviour
 
                 Vector2 accelerationForce = new Vector2(-dirX, -dirY) * force;
                 ShootBullet(inHandGun, accelerationForce);
+                LevelController levelController = FindObjectOfType<LevelController>();
+                Vector2 playerLocation = camera.ScreenToWorldPoint(playerPos);
+                levelController.recordPlayerLocation(playerLocation);
                 AutoSwitchGunIfNecessary();
             }
 

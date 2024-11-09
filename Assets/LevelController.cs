@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class LevelController : MonoBehaviour
     private static int _numOfTries;
     private static bool _ifSuccess;
     
+    private List<Vector2> _playerLocations;
+
 
     void Start()
     {
@@ -101,6 +105,16 @@ public class LevelController : MonoBehaviour
         _ifSuccess = true;
     }
 
+    public void recordPlayerLocation(Vector3 playerLocation){
+        if (_playerLocations == null)
+        {
+            _playerLocations = new List<Vector2>();
+        }
+        _playerLocations.Add(playerLocation);
+
+        Debug.Log("Player locations: " + string.Join(", ", _playerLocations.Select(v => v.ToString()).ToArray()));
+    }
+
     public int getShootFriend(){
         return _shootFriend;
     }
@@ -126,5 +140,9 @@ public class LevelController : MonoBehaviour
 
     public int getTouchLava(){
         return _touchLava;
+    }
+
+    public List<Vector2> getPlayerLocations(){
+        return _playerLocations;
     }
 }

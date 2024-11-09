@@ -130,5 +130,37 @@ public class SendToGoogle : MonoBehaviour
             }
         }
     }
+    
+    public void SendPlayerLocationData(List<Vector2> _playerLocations){
+        LevelController levelController = FindObjectOfType<LevelController>();
+        int levelID = levelController.getCurrentLevelIndex();
+        string _levelID = "level" + levelID.ToString();
+
+        StartCoroutine(PostPlayerLocationData(_sessionID.ToString(), _levelID, _playerLocations));
+    }
+
+    private IEnumerator PostPlayerLocationData(string sessionID, string _levelID, List<Vector2> _playerLocations){
+        // https://docs.google.com/forms/u/0/d/e/1FAIpQLScLnT6MliSA3EXORLUVmMKh0Me6ur2KIpAZUeOv-PdBECKB7w/formResponse
+        WWWForm form = new WWWForm();
+        form.AddField("entry.1857760284", sessionID);
+        form.AddField("entry.3636898", _levelID);
+        for (int i = 0; i < _playerLocations.Count; i++){
+            form.AddField("entry." + (i + 1).ToString(), _playerLocations[i].ToString());
+        }
+
+        using (UnityWebRequest www = UnityWebRequest.Post(rewardDataURL, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
 }
 
