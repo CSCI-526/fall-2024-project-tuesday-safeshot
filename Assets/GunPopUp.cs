@@ -26,7 +26,7 @@ public class GunPopUp : MonoBehaviour
         if (collision.gameObject.name.StartsWith("FlamethrowerPowerup") && SceneManager.GetActiveScene().name == "Level2" )
         {
             Debug.Log("Player picked up Flamethrower Powerup");
-            powerupMessage = "Acquired Flame power up! \nYou can switch to fire gun by pressing 3 and break the ice wall in one shot!";
+            powerupMessage = "Press 3 to use fire gun to break the ice wall in one shot!";
 
             if (!hasShownPopup)
             {
@@ -40,7 +40,7 @@ public class GunPopUp : MonoBehaviour
         else if (collision.gameObject.name.StartsWith("RocketPowerup") && SceneManager.GetActiveScene().name == "Level3")
         {
             Debug.Log("Player picked up Rocket Powerup");
-            powerupMessage = "Acquired Rocket power up! \nYou can switch to rocket gun by pressing 2, jump a longer distance and beware of the explosion!";
+            powerupMessage = "Press 2 to use rocket gun to jump further and beware of explosions!";
 
             if (!hasShownPopup)
             {
