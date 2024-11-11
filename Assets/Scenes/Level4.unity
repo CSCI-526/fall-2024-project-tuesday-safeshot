@@ -263,7 +263,7 @@ MonoBehaviour:
   fireGun: {fileID: 1042516407}
   losingText: {fileID: 4335019609785693678, guid: d44ac3a66c30f40f490ace23691d94d5, type: 3}
   handgunForce: 5
-  rocketForce: 10
+  rocketForce: 15
   fireForce: 2
   specialGunCollected: 0
   specialGunUsed: 0
@@ -12240,8 +12240,8 @@ Transform:
   m_GameObject: {fileID: 2097097409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5813, y: -5.6278, z: 3.87}
-  m_LocalScale: {x: 7.1539445, y: 2.1156998, z: 1}
+  m_LocalPosition: {x: 0.5813, y: -5.6751, z: 3.87}
+  m_LocalScale: {x: 7.1539445, y: 2.021128, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1361920976}

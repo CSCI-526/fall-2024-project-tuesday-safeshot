@@ -417,7 +417,7 @@ MonoBehaviour:
   rocketGun: {fileID: 75686379}
   fireGun: {fileID: 1042516407}
   losingText: {fileID: 4335019609785693678, guid: d44ac3a66c30f40f490ace23691d94d5, type: 3}
-  handgunForce: 5
+  handgunForce: 6
   rocketForce: 10
   fireForce: 2
   specialGunCollected: 0

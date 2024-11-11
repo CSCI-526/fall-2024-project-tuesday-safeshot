@@ -23,10 +23,10 @@ public class GunPopUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.StartsWith("FlamethrowerPowerup") && SceneManager.GetActiveScene().name == "Level2" )
+        if (collision.gameObject.name.StartsWith("FlamethrowerPowerup") && SceneManager.GetActiveScene().name == "Level2")
         {
             Debug.Log("Player picked up Flamethrower Powerup");
-            powerupMessage = "Press 3 to use fire gun to break the ice wall in one shot!";
+            powerupMessage = "Press 2 to use fire gun to break the ice wall in one shot!";
 
             if (!hasShownPopup)
             {
@@ -40,7 +40,7 @@ public class GunPopUp : MonoBehaviour
         else if (collision.gameObject.name.StartsWith("RocketPowerup") && SceneManager.GetActiveScene().name == "Level3")
         {
             Debug.Log("Player picked up Rocket Powerup");
-            powerupMessage = "Press 2 to use rocket gun to jump further and beware of explosions!";
+            powerupMessage = "Press 3 to use rocket gun to jump further and beware of explosions!";
 
             if (!hasShownPopup)
             {

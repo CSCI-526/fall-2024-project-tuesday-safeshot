@@ -32,7 +32,7 @@ public class movePlayer : MonoBehaviour
     public GameObject losingText;
 
     private float force = 5f;
-    public float handgunForce = 5f;
+    public float handgunForce = 3f;
     public float rocketForce = 10f;
     public float fireForce = 2f;
 
@@ -102,7 +102,7 @@ public class movePlayer : MonoBehaviour
     void Update()
     {
         // Call the update function in LavaAlphaController
-        LavaAlphaController.UpdateLavaAlpha();       
+        LavaAlphaController.UpdateLavaAlpha();
         // Game Over mechanics
         if (gameOver)
         {
@@ -122,7 +122,7 @@ public class movePlayer : MonoBehaviour
         }
 
         // If paused, do not allow shooting
-        PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();       
+        PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
         if (pauseMenuController != null && pauseMenuController.IsPaused())
         {
             return;
@@ -295,7 +295,7 @@ public class movePlayer : MonoBehaviour
         if (rb_bullet != null)
         {
             rb_bullet.velocity = direction * bulletSpeed;
-            rb.AddForce(accelerationForce * 1.5f, ForceMode2D.Impulse);
+            rb.AddForce(accelerationForce, ForceMode2D.Impulse);
         }
 
         Debug.Log("Bullet count: " + bulletCount);
