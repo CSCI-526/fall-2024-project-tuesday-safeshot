@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 681001459}
   - component: {fileID: 681001462}
   - component: {fileID: 681001461}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: lava
   m_TagString: lava
   m_Icon: {fileID: 0}

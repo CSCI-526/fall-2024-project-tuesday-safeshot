@@ -26,7 +26,7 @@ public class ExitDoor : MonoBehaviour
             {
                 gameOver = true;                
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenu(true, "You Win!\n(Return to Main Menu for next level)");
+                pauseMenuController.ShowGamePauseMenu(true, "You Win!");
                 pauseMenuController.EndGame();
                 LevelController levelController = FindObjectOfType<LevelController>();
                 if (levelController != null)
