@@ -198,7 +198,7 @@ public class movePlayer : MonoBehaviour
             gun = handgun.transform;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && rocketBullets > 0)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && rocketBullets > 0)
         {
             inHandGun = 1;
             force = rocketForce;
@@ -207,7 +207,7 @@ public class movePlayer : MonoBehaviour
             fireGun.SetActive(false);
             gun = rocketGun.transform;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && flameBullets > 0)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && flameBullets > 0)
         {
             inHandGun = 2;
             force = fireForce;
@@ -295,7 +295,7 @@ public class movePlayer : MonoBehaviour
         if (rb_bullet != null)
         {
             rb_bullet.velocity = direction * bulletSpeed;
-            rb.AddForce(accelerationForce, ForceMode2D.Impulse);
+            rb.AddForce(accelerationForce * 1.5f, ForceMode2D.Impulse);
         }
 
         Debug.Log("Bullet count: " + bulletCount);
