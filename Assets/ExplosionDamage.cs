@@ -29,6 +29,10 @@ public class ExplosionDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Explosion collided with " + other.gameObject.tag);
+        if (!other.gameObject.GetComponent<SpriteRenderer>().isVisible)
+        {
+            return;
+        }
         if (other.gameObject.tag == "NPC")
         {
             gameFail = true;
