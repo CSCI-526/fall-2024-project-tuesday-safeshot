@@ -102,7 +102,7 @@ public class movePlayer : MonoBehaviour
     void Update()
     {
         // Call the update function in LavaAlphaController
-        LavaAlphaController.UpdateLavaAlpha();
+        // LavaAlphaController.UpdateLavaAlpha();
         // Game Over mechanics
         if (gameOver)
         {

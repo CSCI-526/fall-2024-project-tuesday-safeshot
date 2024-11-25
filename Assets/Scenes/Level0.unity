@@ -244,7 +244,7 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletCountText: {fileID: 1143219724}
   PlayerBulletCountText: {fileID: 749598379}
-  bulletLimit: 60
+  bulletLimit: 80
   obj: {fileID: 57679136}
   handgun: {fileID: 9614925}
   rocketGun: {fileID: 75686379}
@@ -1890,7 +1890,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6509804, g: 0.11107729, b: 0.0627451, a: 1}
+  m_Color: {r: 1, g: 0.08074534, b: 0.105882354, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

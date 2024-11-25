@@ -537,7 +537,7 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletCountText: {fileID: 1143219724}
   PlayerBulletCountText: {fileID: 952682119}
-  bulletLimit: 35
+  bulletLimit: 50
   obj: {fileID: 57679136}
   handgun: {fileID: 9614925}
   rocketGun: {fileID: 75686379}
