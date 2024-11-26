@@ -336,7 +336,15 @@ public class movePlayer : MonoBehaviour
                 levelController.increTouchLava();
                 levelController.increNumOfTries();
                 PauseMenuController pauseMenuController = FindObjectOfType<PauseMenuController>();
-                pauseMenuController.ShowGamePauseMenu(false, "Game Over!\nYou died by Lava!");
+                if (gameObject.scene.name == "Level5" || gameObject.scene.name == "Level4")
+                {
+                    pauseMenuController.ShowGamePauseMenu(false, "Game Over!\nYou died by Lava!");
+                }
+                else
+                {
+                    pauseMenuController.ShowGamePauseMenu(false, "Game Over!\nYou died by Spikes!");
+                }
+                // pauseMenuController.ShowGamePauseMenu(false, "Game Over!\nYou died by Lava!");
                 pauseMenuController.EndGame();
             }
         }
