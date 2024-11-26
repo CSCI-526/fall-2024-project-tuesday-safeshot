@@ -26,7 +26,7 @@ public class GunPopUp : MonoBehaviour
         if (collision.gameObject.name.StartsWith("FlamethrowerPowerup") && SceneManager.GetActiveScene().name == "Level2")
         {
             Debug.Log("Player picked up Flamethrower Powerup");
-            powerupMessage = "Press 2 to use fire gun to break the ice wall in one shot!";
+            powerupMessage = "Press 2 to use fire gun to break the ice wall in one shot!\nPress 1 to switch back to normal gun.";
 
             if (!hasShownPopup)
             {
